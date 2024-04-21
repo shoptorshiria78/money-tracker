@@ -34,13 +34,13 @@ function NavBar() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-    const handleLogOut = ()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            toast.success("Successfully Log Out")
-        })
+            .then(() => {
+                toast.success("Successfully Log Out")
+            })
     }
 
     const handleOpenNavMenu = (event) => {
@@ -134,7 +134,7 @@ function NavBar() {
                             textDecoration: 'none',
                         }}
                     >
-                       Money Tracker
+                        Money Tracker
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -150,37 +150,37 @@ function NavBar() {
 
                     {
                         user ?
-                        <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src={user.photoURL} />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                             <Typography textAlign="center">{user.displayName}</Typography>
-                             <Link to='/dashboard'> Dashboard</Link>
-                             <button onClick={handleLogOut}>LogOut</button>
-                            
-                        </Menu>
-                    </Box>:
-                    <Link to='/login'>
-                    Login
-                    </Link>
+                            <Box sx={{ flexGrow: 0 }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Remy Sharp" src={user.photoURL} />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <Typography sx={{px: 2}} textAlign="center">{user.displayName}</Typography>
+                                    <p className='px-4'> <Link to='/dashboard'> Dashboard</Link></p>
+                                    <button className='px-4' onClick={handleLogOut}>LogOut</button>
+
+                                </Menu>
+                            </Box> :
+                            <Link to='/login'>
+                                Login
+                            </Link>
                     }
                 </Toolbar>
             </Container>
