@@ -22,7 +22,7 @@ const WhyUs = () => {
                         <GiArchiveResearch className="text-7xl mr-3 text-emerald-500"></GiArchiveResearch>
                         <div>
                             <p className="text-xl text-emerald-400 ">Innovation and Research</p>
-                            <p className="text-sm text-emerald-300 ">Our invest in cutting-edge research, offering the latest innovations in skincare, technology, or fashion to keep you ahead of the curve.</p>
+                            <p className="text-sm text-emerald-300 ">Conduct regular reviews of your budget to ensure that your spending aligns with your financial goals. Analyze your income, expenses, and savings to identify any areas for improvement or adjustment.</p>
                         </div>
                     </div>
                     <div className="flex ">
