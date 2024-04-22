@@ -37,7 +37,7 @@ export default function IncomeTable() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/deleteIncome/${id}`)
+                axios.delete(`https://money-tracker-server-three.vercel.app/deleteIncome/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             toast.success("Your Income is deleted")

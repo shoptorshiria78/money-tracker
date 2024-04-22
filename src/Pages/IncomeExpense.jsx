@@ -21,7 +21,7 @@ const IncomeExpense = () => {
         console.log(income, date, email);
         const incomeInput = { income, date, email }
 
-        axios.post("http://localhost:5000/income", incomeInput)
+        axios.post("https://money-tracker-server-three.vercel.app/income", incomeInput)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {
@@ -44,7 +44,7 @@ const IncomeExpense = () => {
         console.log(expense, date, category, email);
         const expenseInput = { expense, date, category,email }
 
-        axios.post("http://localhost:5000/expense", expenseInput)
+        axios.post("https://money-tracker-server-three.vercel.app/expense", expenseInput)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

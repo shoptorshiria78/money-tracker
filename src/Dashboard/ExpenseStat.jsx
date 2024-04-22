@@ -1,9 +1,13 @@
+import StatLineCharts from "../Component/StatLineCharts";
+
+
+
 
 
 const ExpenseStat = () => {
     return (
         <div className='mt-20'>
-            this is expense stat
+         <StatLineCharts></StatLineCharts>
         </div>
     );
 };

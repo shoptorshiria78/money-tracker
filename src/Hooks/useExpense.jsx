@@ -10,7 +10,7 @@ const useExpense = () => {
     const { refetch: reloadx, data: expense = []}= useQuery({
         queryKey: ['expense'],
         queryFn: async()=>{
-            const res = await axios.get(`http://localhost:5000/getExpense/${user.email}`);
+            const res = await axios.get(`https://money-tracker-server-three.vercel.app/getExpense/${user.email}`);
             return res.data
         }
     })

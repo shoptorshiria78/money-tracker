@@ -25,7 +25,7 @@ const pages = [
     },
     {
         id: "2",
-        name: "Income and Expense Tracking ",
+        name: "Income and Expense ",
         path: "/tracking"
     }];
 
@@ -112,7 +112,8 @@ function NavBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                                    <NavLink to={page.path}>{page.name}</NavLink>
+                                    <NavLink className={({ isActive }) =>
+                                    isActive ? " text-base bg-emerald-600 text-white px-4 py-3 rounded-xl w-full" : " text-base bg-lime-400 text-white px-3 py-3 rounded-xl w-full"} to={page.path}>{page.name}</NavLink>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -143,7 +144,8 @@ function NavBar() {
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                <NavLink to={page.path}>{page.name}</NavLink>
+                                <NavLink className={({ isActive }) =>
+                                    isActive ? " text-base bg-emerald-600 text-white px-6 py-3 rounded w-full" : " text-base bg-lime-400 text-white px-6 py-3 rounded w-full"} to={page.path}>{page.name}</NavLink>
                             </Button>
                         ))}
                     </Box>
@@ -178,7 +180,7 @@ function NavBar() {
 
                                 </Menu>
                             </Box> :
-                            <Link to='/login'>
+                            <Link className='px-3 py-1 bg-emerald-700 text-white rounded-xl' to='/login'>
                                 Login
                             </Link>
                     }

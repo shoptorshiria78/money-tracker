@@ -46,13 +46,13 @@ const Router = createBrowserRouter([
         {
           path:"/dashboard/updateExpense/:id",
           element:<UpdateExpense></UpdateExpense>,
-          loader: ({ params }) => fetch(`http://localhost:5000/getSingleExpenseId/${params.id}`)
+          loader: ({ params }) => fetch(`https://money-tracker-server-three.vercel.app/getSingleExpenseId/${params.id}`)
         }
         ,
         {
           path:"/dashboard/updateIncome/:id",
           element:<UpdateIncome></UpdateIncome>,
-          loader: ({ params }) => fetch(`http://localhost:5000/getSingleIncomeId/${params.id}`)
+          loader: ({ params }) => fetch(`https://money-tracker-server-three.vercel.app/getSingleIncomeId/${params.id}`)
         }
       ]
     }

@@ -10,7 +10,7 @@ const useIncome = () => {
     const { refetch: reload, data: income = []}= useQuery({
         queryKey: ['income'],
         queryFn: async()=>{
-            const res = await axios.get(`http://localhost:5000/getIncome/${user.email}`);
+            const res = await axios.get(`https://money-tracker-server-three.vercel.app/getIncome/${user.email}`);
             return res.data
         }
     })

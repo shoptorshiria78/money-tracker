@@ -85,7 +85,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const themeColor = createTheme({
+    palette: {
+        primary: {
+          main: '#4caf50',
+          // mainGradient: "linear-gradient(to right, #3c3c3c, #ffffff)",
+          contrastText:"white"
+        },
+        secondary: {
+          main:"#C5FFF8"
+        }
+        // ...
+      }
+})
 
 export default function DashboardLayOut() {
     const [open, setOpen] = useState(true);
@@ -94,7 +106,7 @@ export default function DashboardLayOut() {
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={themeColor}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar position="absolute" open={open}>
@@ -136,6 +148,7 @@ export default function DashboardLayOut() {
                             px: [1],
                         }}
                     >
+                        <Typography sx={{fontSize:24, fontWeight:600, textAlign:"center", color:"#41B06E"}}>Money Tracker</Typography>
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
                         </IconButton>
@@ -149,7 +162,7 @@ export default function DashboardLayOut() {
                                     <DashboardIcon />
                                 </ListItemIcon>
                                 <NavLink className={({ isActive }) =>
-                                    isActive ? " text-base bg-indigo-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-purple-400 text-white px-3 py-3 rounded-xl w-full"} to="/dashboard" >
+                                    isActive ? " text-base bg-emerald-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-lime-400 text-white px-3 py-3 rounded-xl w-full"} to="/dashboard" >
                                     <ListItemText primary="User Profile" />
                                 </NavLink>
                             </ListItemButton>
@@ -160,7 +173,7 @@ export default function DashboardLayOut() {
                                     <ShowChartIcon />
                                 </ListItemIcon>
                                 <NavLink className={({ isActive }) =>
-                                    isActive ? " text-base bg-indigo-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-purple-400 text-white px-3 py-3 rounded-xl w-full"} to="/dashboard/expenseStat" >
+                                    isActive ? " text-base bg-emerald-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-lime-400 text-white px-3 py-3 rounded-xl w-full"} to="/dashboard/expenseStat" >
                                     <ListItemText primary="Expense Stat" />
                                 </NavLink>
                             </ListItemButton>
@@ -174,7 +187,7 @@ export default function DashboardLayOut() {
                                 <HomeIcon />
                             </ListItemIcon>
                             <NavLink className={({ isActive }) =>
-                                isActive ? " text-base bg-indigo-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-purple-400 text-white px-3 py-3 rounded-xl w-full"} to="/">
+                                isActive ? " text-base bg-emerald-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-lime-400 text-white px-3 py-3 rounded-xl w-full"} to="/">
                                 <ListItemText primary="Home" />
                             </NavLink>
                         </ListItemButton>
@@ -183,7 +196,7 @@ export default function DashboardLayOut() {
                                 <AttachMoneyIcon />
                             </ListItemIcon>
                             <NavLink className={({ isActive }) =>
-                                isActive ? " text-base bg-indigo-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-purple-400 text-white px-3 py-3 rounded-xl w-full"} to="/tracking" >
+                                isActive ? " text-base bg-emerald-600 text-white px-3 py-3 rounded-xl w-full" : " text-base bg-lime-400 text-white px-3 py-3 rounded-xl w-full"} to="/tracking" >
                                 <ListItemText primary="Income Expense" />
                             </NavLink>
                         </ListItemButton>

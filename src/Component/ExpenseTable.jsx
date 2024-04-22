@@ -65,7 +65,7 @@ export default function ExpenseTable() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/deleteExpense/${id}`)
+                axios.delete(`https://money-tracker-server-three.vercel.app/deleteExpense/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             toast.success("Your Expense is deleted")

@@ -24,7 +24,7 @@ const UpdateExpense = () => {
         console.log(expense, date, category, email);
         const expenseInput = { expense, date, category, email }
 
-        axios.put(`http://localhost:5000/updateExpense/${expenseData._id}`, expenseInput)
+        axios.put(`https://money-tracker-server-three.vercel.app/updateExpense/${expenseData._id}`, expenseInput)
             .then(res => {
                 console.log(res.data)
                 if (res.data.modifiedCount) {
