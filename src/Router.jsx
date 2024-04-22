@@ -9,6 +9,8 @@ import Register from "./Pages/Register";
 import DashboardLayout from "./Dashboard/DashboardLayout";
 import UserProfile from "./Dashboard/UserProfile";
 import ExpenseStat from "./Dashboard/ExpenseStat";
+import UpdateExpense from "./Dashboard/UpdateExpense";
+import UpdateIncome from "./Dashboard/UpdateIncome";
 
 const Router = createBrowserRouter([
     {
@@ -39,6 +41,16 @@ const Router = createBrowserRouter([
         {
           path:"/dashboard/expenseStat",
           element:<ExpenseStat></ExpenseStat>
+        }
+        ,
+        {
+          path:"/dashboard/updateExpense/:id",
+          element:<UpdateExpense></UpdateExpense>
+        }
+        ,
+        {
+          path:"/dashboard/updateIncome/:id",
+          element:<UpdateIncome></UpdateIncome>
         }
       ]
     }
