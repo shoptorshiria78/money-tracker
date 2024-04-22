@@ -144,7 +144,7 @@ const IncomeExpense = () => {
 
 
                         </div>
-                        <input className="w-full bg-[#4caf50] text-white rounded-xl font-bold text-xl h-12 my-[27px]" type="submit" value="Save Income" />
+                        <input className="w-full bg-[#4caf50] text-white rounded-xl font-bold text-xl h-12 my-[27px]" type="submit" value="Save Expense" />
                     </form>
                 </div>
                 <div className="flex-1">

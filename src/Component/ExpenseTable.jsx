@@ -11,6 +11,10 @@ import Swal from 'sweetalert2';
 import useExpense from '../Hooks/useExpense';
 import axios from 'axios';
 import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function createData(expense, date, category, email, _id) {
     return { expense, date, category, email, _id };
@@ -19,9 +23,35 @@ function createData(expense, date, category, email, _id) {
 
 export default function ExpenseTable() {
 
-    const [expense, reloadx] = useExpense()
+    const [expense, reloadx] = useExpense();
+    const navigate = useNavigate();
+    const [netExpense, setNetExpense] = useState(expense)
+    const [startDate, setStartDate] = useState(new Date());
+
+    const handleFilterCategory = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const category = form.category.value || "Not Given";
+        if (category === "All") {
+            setNetExpense(expense)
+        }
+        else {
+            const filteredExpense = expense.filter(item => item.category === category);
+            setNetExpense(filteredExpense)
+        }
 
 
+    }
+
+    const handleFilterDate = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const date = form.date.value || "Not Given";
+        const filteredExpense = expense.filter(item => item.date === date);
+        setNetExpense(filteredExpense)
+
+
+    }
 
     const handleDelete = (id) => {
 
@@ -49,19 +79,59 @@ export default function ExpenseTable() {
         });
 
     }
-    const handleUpdate = (id) =>{
-
+    const handleUpdateExpense = (id) => {
+        navigate(`/dashboard/updateExpense/${id}`)
     }
 
 
-    const rows = expense.map((item) => createData(item.expense, item.date, item.category, item.email, item._id))
+    const rows = netExpense.map((item) => createData(item.expense, item.date, item.category, item.email, item._id))
 
 
     return (
 
         <div className="md:min-w-[1200px] mx-auto overflow-x-auto overflow-y-auto mt-10">
-            <Typography sx={{fontSize:24 , fontWeight:"600", textAlign:
-        "center", my:6}}>Expenses are given Here</Typography>
+            <Typography sx={{
+                fontSize: 24, fontWeight: "600", textAlign:
+                    "center", my: 6
+            }}>Expenses are given Here</Typography>
+
+            <div>
+                <div className="flex justify-between items-center">
+                    <form onSubmit={handleFilterCategory}>
+
+                        <div className="ml-4  mt-5 w-1/2">
+                            <label className="label">
+                                <p className="label-text text-emerald-600 font-bold text-base lg:text-xl mb-3">Category</p>
+                            </label>
+                            <select name="category" className=" w-full h-12 px-4">
+                                <option value="Groceries">Groceries</option>
+                                <option value="Laundry">Laundry</option>
+                                <option value="Vegetable">Vegetable</option>
+                                <option value="Meat">Meat</option>
+                                <option value="Fish">Fish</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Miscellaneous">Miscellaneous</option>
+                                <option value="All">All</option>
+                            </select>
+                            <input className="w-full bg-[#4caf50] text-white rounded-xl font-bold text-xl h-12 my-[27px] px-4" type="submit" value="filter Category" />
+                        </div>
+                    </form>
+                    <form onSubmit={handleFilterDate}>
+                        <div className="ml-4  mt-5 w-1/2">
+                            <label className="label">
+                                <p className="label-text text-emerald-600 font-bold text-base lg:text-xl mb-2"> Date</p>
+                            </label>
+                            <DatePicker name="date" className="w-full h-12 px-6 border" selected={startDate} onChange={(date) => setStartDate(date)} />
+                            <input className="w-full bg-[#4caf50] text-white rounded-xl font-bold text-xl h-12 my-[27px] px-4" type="submit" value="filter  Date" />
+                        </div>
+                    </form>
+
+
+
+                </div>
+            </div>
+
             <TableContainer component={Paper} elevation={5} sx={{ p: 5, ml: 10 }}>
                 <Table sx={{ width: 1000, p: 3 }} aria-label="simple table">
                     <TableHead sx={{ backgroundColor: "#4caf50", px: 4 }}>
@@ -114,7 +184,7 @@ export default function ExpenseTable() {
                                         Button
                                     </svg>
                                 </button></TableCell>
-                                <TableCell onClick={() => handleUpdate(row._id)} sx={{ color: "black" }} align="right"><button className="Btn">Edit
+                                <TableCell onClick={() => handleUpdateExpense(row._id)} sx={{ color: "black" }} align="right"><button className="Btn">Edit
                                     <svg className="svg" viewBox="0 0 512 512">
                                         <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg>
                                 </button></TableCell>

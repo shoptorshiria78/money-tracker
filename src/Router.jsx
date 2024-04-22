@@ -45,12 +45,14 @@ const Router = createBrowserRouter([
         ,
         {
           path:"/dashboard/updateExpense/:id",
-          element:<UpdateExpense></UpdateExpense>
+          element:<UpdateExpense></UpdateExpense>,
+          loader: ({ params }) => fetch(`http://localhost:5000/getSingleExpenseId/${params.id}`)
         }
         ,
         {
           path:"/dashboard/updateIncome/:id",
-          element:<UpdateIncome></UpdateIncome>
+          element:<UpdateIncome></UpdateIncome>,
+          loader: ({ params }) => fetch(`http://localhost:5000/getSingleIncomeId/${params.id}`)
         }
       ]
     }
